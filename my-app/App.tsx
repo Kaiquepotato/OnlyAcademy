@@ -2,19 +2,22 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import TelaPerfil from './TelaPerfil/TelaPerf';
+import HomeScreen from './HomeScreen/HomeScreen';
+import CameraScreen from './cameraScreen/CameraScreen';
 
-const Stack = createStackNavigator();
+export type RootStackParamList = {
+  Home: undefined;
+  Camera: undefined;
+};
+
+const Stack = createStackNavigator<RootStackParamList>();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Perfil">
-        <Stack.Screen
-          name="Perfil"
-          component={TelaPerfil}
-          options={{ headerShown: false }} // Remove o cabeçalho
-        />
+      <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Camera" component={CameraScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
